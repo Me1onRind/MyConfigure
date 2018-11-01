@@ -118,6 +118,7 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
 let g:go_gocode_propose_source = 0
 let g:go_gocode_autobuild = 1
+let g:go_fmt_command = "goimports"
 
 "let g:go_highlight_variable_declarations = 1
 "let g:go_highlight_variable_assignments = 1
