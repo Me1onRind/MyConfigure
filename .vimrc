@@ -71,7 +71,7 @@ nmap <C-L> :MarkClear<CR>:noh<CR>
 nmap gr gT
 
 call plug#begin('~/.vim/plugged')
-Plug 'lvht/phpcd.vim', {'for':'php','do': 'composer install'} "php类成员和函数补全 确保安装composer
+"Plug 'lvht/phpcd.vim',{'for':'php'}            "php类成员和函数补全
 Plug 'scrooloose/nerdtree'                     "目录树
 Plug 'scrooloose/nerdcommenter'                "注释补全
 Plug 'ctrlpvim/ctrlp.vim'                      "快速查找文件
@@ -88,7 +88,6 @@ Plug 'posva/vim-vue'                           "vim
 Plug 'Rip-Rip/clang_complete'                  "c的补全
 "Plug 'w0rp/ale'                                "各种语法检查和补全
 "Plug 'vim-scripts/AutoComplPop'
-Plug 'morhetz/gruvbox'                         " 主题
 Plug 'KeitaNakamura/neodark.vim'
 call plug#end()
 
@@ -104,14 +103,15 @@ let g:clang_complete_macros=1 "补全宏
 " .clang_complete 定义自定义引用的头文件
 
 "colorscheme gruvbox
-"colorscheme industry
-colorscheme peachpuff
-"colorscheme neodark
+colorscheme neodark
+
 let g:neodark#terminal_transparent = 1
 hi Normal ctermfg=252 ctermbg=none
 
 "vim-go
-"let g:go_get_update = 0
+":GoUpdateBinaries
+":GoInstallBinaries
+let g:go_get_update = 0
 "let g:go_highlight_operators = 1
 let g:go_highlight_function_arguments = 1
 let g:go_highlight_function_calls = 1
@@ -120,8 +120,7 @@ let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
 let g:go_gocode_propose_source = 0
-let g:go_gocode_autobuild = 1
-let g:go_fmt_command = "goimports"
+"let g:go_fmt_command = "goimports"
 
 "let g:go_highlight_variable_declarations = 1
 "let g:go_highlight_variable_assignments = 1
@@ -160,20 +159,17 @@ let g:ctrlp_custom_ignore = {
 " phpcheck
 " let g:PHP_SYNTAX_CHECK_BIN =
 
-" phpcd补全的配置
+" supertab 和 phpcd补全的配置
 " phpcd 需要pcntl拓展 和 .phpcd.vim在根目录下指定类自动加载文件
-let g:phpcd_autoload_path = "auto_loadfile.php"
+" let g:phpcd_autoload_path =
 " 通常是使用spl_autoload_register函数
-
-" super tab
 let g:SuperTabRetainCompletionType=0
 let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabCrMapping = 1
+let g:SuperTabCrapping = 1
 let g:SuperTabRetainCompletionDuration = 'completion'
 let g:SuperTabLongestHighlight = 1
 let g:SuperTabLongestEnhanced = 1
-let g:SuperTabMappingTabLiteral = 0
-let g:phpcd_php_cli_executable = 'php'
+"let g:SuperTabMappingTabLiteral = 0
 
 function! MyTagContext()
     let str = getline('.')
@@ -188,6 +184,11 @@ endfunction
 let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextDiscover']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc']
 let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
+
+"autocmd FileType php
+    "\ call SuperTabChain(&omnifunc, "<c-p>") |
+    "\ set omnifunc=phpcd#CompletePHP |
+    "\ call SuperTabSetDefaultCompletionType("<c-x><c-u>")
 
 " 等号对齐
 xmap ga <Plug>(EasyAlign)
