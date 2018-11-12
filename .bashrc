@@ -1,4 +1,5 @@
 export HOMEBREW_NO_AUTO_UPDATE=true
+export LANG="en_US.UTF-8"
 
 #export PS1='[\u@mbp \W]\$ '
 # Make bash check its window size after a process completes
@@ -9,7 +10,6 @@ PATH=$PATH:/usr/local/bin
 
 alias ll="ls -alGh"
 alias grep="grep --color"
-#export TIME_STYLE="+%Y-%m-%d %H:%M:%S"
 
 alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
 alias note="cd ~/Desktop/simplenote"
@@ -23,14 +23,16 @@ alias g="/Users/me1onrind/gopath/bin/gocode -s -debug -sock unix -addr 127.0.0.1
 # go
 export GOROOT=/usr/local/go
 export GOPATH=/Users/me1onrind/gopath
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+
+PATH=$PATH:$GOPATH/bin
+PATH=$PATH:$GOROOT/bin
+#export PATH=$PATH:/usr/local/opt/gnu-sed/bin
 
 alias gs="cd ${GOPATH}/src"
 
 
 # mysql
-export PATH=$PATH:/usr/local/mysql/bin/
+PATH=$PATH:/usr/local/mysql/bin
 alias mysql.start="sudo /usr/local/mysql/support-files/mysql.server start"
 alias mysql.status="sudo /usr/local/mysql/support-files/mysql.server status"
 alias mysql.stop="sudo /usr/local/mysql/support-files/mysql.server stop"
@@ -57,3 +59,13 @@ alias php7="/usr/local/php7/bin/php"
 
 # lazygit
 alias lg="lazygit"
+
+# java
+#JAVA_HOME="/usr/local/jdk-11.0.1.jdk/Contents/Home/"
+#PATH=$PATH:$JAVA_HOME/bin
+#CLASSPATH=$JAVA_HOME/lib/
+
+#export CLASSPATH
+#export JAVA_HOME
+
+export PATH
