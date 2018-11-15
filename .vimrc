@@ -79,17 +79,19 @@ Plug 'ervandew/supertab'                       "tab 键补全
 Plug 'majutsushi/tagbar'                       "显示本文件函数
 Plug 'bronson/vim-trailing-whitespace'         "显示行尾空格
 Plug 'junegunn/vim-easy-align'                 "根据符号对齐
-Plug 'https://github.com/GenialX/phpcheck.git' "php语法检查
+"Plug 'https://github.com/GenialX/phpcheck.git' "php语法检查
 Plug 'fatih/vim-go'                            "vimgo
 Plug 'mattn/emmet-vim'                         "<>标签
 Plug 'Yggdroot/vim-mark'                       "<leader>m 高亮
 Plug 'brooth/far.vim'                          "快速找字符串 F xx **
 Plug 'posva/vim-vue'                           "vim
 Plug 'Rip-Rip/clang_complete'                  "c的补全
+Plug 'vim-syntastic/syntastic'
 "Plug 'w0rp/ale'                                "各种语法检查和补全
 "Plug 'vim-scripts/AutoComplPop'
 Plug 'KeitaNakamura/neodark.vim'
 call plug#end()
+
 
 "map <c-e> :ALEDetail<cr>
 
@@ -192,3 +194,10 @@ let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
 
 " 等号对齐
 xmap ga <Plug>(EasyAlign)
+
+" php语法检查
+" 依赖phpstan
+" composer require --dev phpstan/phpstan
+" 配置文件phpstan.neon
+let g:syntastic_php_checkers = ['php', 'phpstan']
+let g:syntastic_php_phpstan_args = " -l 7 -c ~/etc/phpstan.neon "

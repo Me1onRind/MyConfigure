@@ -1,5 +1,6 @@
 export HOMEBREW_NO_AUTO_UPDATE=true
 export LANG="en_US.UTF-8"
+export TERM=xterm
 
 #export PS1='[\u@mbp \W]\$ '
 # Make bash check its window size after a process completes
@@ -10,6 +11,7 @@ PATH=$PATH:/usr/local/bin
 
 alias ll="ls -alGh"
 alias grep="grep --color"
+alias sh="bash"
 
 alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
 alias note="cd ~/Desktop/simplenote"
@@ -56,6 +58,7 @@ alias rl="ssh zenglening@relay.afpai.com"
 
 # php
 alias php7="/usr/local/php7/bin/php"
+PATH=$PATH:/Users/me1onrind/.composer/vendor/bin
 
 # lazygit
 alias lg="lazygit"
