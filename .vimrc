@@ -50,11 +50,11 @@ endif
 
 filetype plugin on
 
-if &term=="xterm"
-     set t_Co=256
-     set t_Sb=[4%dm
-     set t_Sf=[3%dm
-endif
+"if &term=="xterm"
+     "set t_Co=256
+     "set t_Sb=[4%dm
+     "set t_Sf=[3%dm
+"endif
 
 " 以下为个人设置
 set expandtab "tab转化为空格
@@ -111,7 +111,7 @@ let g:neodark#terminal_transparent = 1
 hi Normal ctermfg=252 ctermbg=none
 
 "vim-go
-"let g:go_get_update = 0
+let g:go_get_update = 0
 "let g:go_highlight_operators = 1
 let g:go_highlight_function_arguments = 1
 let g:go_highlight_function_calls = 1
@@ -121,7 +121,7 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
 let g:go_gocode_propose_source = 0
 let g:go_gocode_autobuild = 1
-let g:go_fmt_command = "goimports"
+"let g:go_fmt_command = "goimports"
 
 "let g:go_highlight_variable_declarations = 1
 "let g:go_highlight_variable_assignments = 1
@@ -172,7 +172,6 @@ let g:SuperTabCrMapping = 1
 let g:SuperTabRetainCompletionDuration = 'completion'
 let g:SuperTabLongestHighlight = 1
 let g:SuperTabLongestEnhanced = 1
-let g:SuperTabMappingTabLiteral = 0
 let g:phpcd_php_cli_executable = 'php'
 
 function! MyTagContext()
@@ -182,7 +181,9 @@ function! MyTagContext()
         return "\<c-p>"
     elseif str =~ '[0-9]\+\%' . line
         return "\<c-p>"
-	endif
+    elseif str =~ '[^:]*[$][a-zA-Z0-9]\+\%' . line
+        return "\<c-p>"
+    endif
 endfunction
 
 let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextDiscover']
