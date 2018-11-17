@@ -71,7 +71,7 @@ nmap <C-L> :MarkClear<CR>:noh<CR>
 nmap gr gT
 
 call plug#begin('~/.vim/plugged')
-Plug 'lvht/phpcd.vim', {'for':'php','do': 'composer install'} "php类成员和函数补全 确保安装composer
+Plug 'lvht/phpcd.vim',{'for':'php'}            "php类成员和函数补全
 Plug 'scrooloose/nerdtree'                     "目录树
 Plug 'scrooloose/nerdcommenter'                "注释补全
 Plug 'ctrlpvim/ctrlp.vim'                      "快速查找文件
@@ -79,18 +79,19 @@ Plug 'ervandew/supertab'                       "tab 键补全
 Plug 'majutsushi/tagbar'                       "显示本文件函数
 Plug 'bronson/vim-trailing-whitespace'         "显示行尾空格
 Plug 'junegunn/vim-easy-align'                 "根据符号对齐
-Plug 'https://github.com/GenialX/phpcheck.git' "php语法检查
+"Plug 'https://github.com/GenialX/phpcheck.git' "php语法检查
 Plug 'fatih/vim-go'                            "vimgo
 Plug 'mattn/emmet-vim'                         "<>标签
 Plug 'Yggdroot/vim-mark'                       "<leader>m 高亮
 Plug 'brooth/far.vim'                          "快速找字符串 F xx **
 Plug 'posva/vim-vue'                           "vim
 Plug 'Rip-Rip/clang_complete'                  "c的补全
+Plug 'vim-syntastic/syntastic'
 "Plug 'w0rp/ale'                                "各种语法检查和补全
 "Plug 'vim-scripts/AutoComplPop'
-Plug 'morhetz/gruvbox'                         " 主题
 Plug 'KeitaNakamura/neodark.vim'
 call plug#end()
+
 
 "map <c-e> :ALEDetail<cr>
 
@@ -104,13 +105,15 @@ let g:clang_complete_macros=1 "补全宏
 " .clang_complete 定义自定义引用的头文件
 
 "colorscheme gruvbox
-"colorscheme industry
-colorscheme peachpuff
 "colorscheme neodark
+colorscheme peachpuff
+
 let g:neodark#terminal_transparent = 1
 hi Normal ctermfg=252 ctermbg=none
 
 "vim-go
+":GoUpdateBinaries
+":GoInstallBinaries
 let g:go_get_update = 0
 "let g:go_highlight_operators = 1
 let g:go_highlight_function_arguments = 1
@@ -160,28 +163,24 @@ let g:ctrlp_custom_ignore = {
 " phpcheck
 " let g:PHP_SYNTAX_CHECK_BIN =
 
-" phpcd补全的配置
+" supertab 和 phpcd补全的配置
 " phpcd 需要pcntl拓展 和 .phpcd.vim在根目录下指定类自动加载文件
-let g:phpcd_autoload_path = "auto_loadfile.php"
+" let g:phpcd_autoload_path =
 " 通常是使用spl_autoload_register函数
-
-" super tab
 let g:SuperTabRetainCompletionType=0
 let g:SuperTabDefaultCompletionType = 'context'
 let g:SuperTabCrMapping = 1
 let g:SuperTabRetainCompletionDuration = 'completion'
 let g:SuperTabLongestHighlight = 1
 let g:SuperTabLongestEnhanced = 1
-let g:phpcd_php_cli_executable = 'php'
+"let g:SuperTabMappingTabLiteral = 0
 
 function! MyTagContext()
     let str = getline('.')
     let line = col('.') . 'c'
-    if str =~ '[''"][a-zA-Z0-9]*\%' . line
+    if str =~ '[''"$][a-zA-Z0-9]*\%' . line
         return "\<c-p>"
     elseif str =~ '[0-9]\+\%' . line
-        return "\<c-p>"
-    elseif str =~ '[^:]*[$][a-zA-Z0-9]\+\%' . line
         return "\<c-p>"
     endif
 endfunction
@@ -190,5 +189,17 @@ let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextD
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc']
 let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
 
+"autocmd FileType php
+    "\ call SuperTabChain(&omnifunc, "<c-p>") |
+    "\ set omnifunc=phpcd#CompletePHP |
+    "\ call SuperTabSetDefaultCompletionType("<c-x><c-u>")
+
 " 等号对齐
 xmap ga <Plug>(EasyAlign)
+
+" php语法检查
+" 依赖phpstan
+" composer require --dev phpstan/phpstan
+" 配置文件phpstan.neon
+let g:syntastic_php_checkers = ['php', 'phpstan']
+let g:syntastic_php_phpstan_args = " -l 7 -c /home/homework/MyConfigure/phpstan.neon "

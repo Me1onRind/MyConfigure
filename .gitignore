@@ -1,0 +1,5 @@
+*.swp
+gin-bin
+vendor
+.clang_complete
+.DS_Store
