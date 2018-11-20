@@ -71,28 +71,26 @@ nmap <C-L> :MarkClear<CR>:noh<CR>
 nmap gr gT
 
 call plug#begin('~/.vim/plugged')
-Plug 'lvht/phpcd.vim',{'for':'php'}            "php类成员和函数补全
-Plug 'scrooloose/nerdtree'                     "目录树
-Plug 'scrooloose/nerdcommenter'                "注释补全
-Plug 'ctrlpvim/ctrlp.vim'                      "快速查找文件
-Plug 'ervandew/supertab'                       "tab 键补全
-Plug 'majutsushi/tagbar'                       "显示本文件函数
-Plug 'bronson/vim-trailing-whitespace'         "显示行尾空格
-Plug 'junegunn/vim-easy-align'                 "根据符号对齐
-"Plug 'https://github.com/GenialX/phpcheck.git' "php语法检查
-Plug 'fatih/vim-go'                            "vimgo
-Plug 'mattn/emmet-vim'                         "<>标签
-Plug 'Yggdroot/vim-mark'                       "<leader>m 高亮
-Plug 'brooth/far.vim'                          "快速找字符串 F xx **
-Plug 'posva/vim-vue'                           "vim
-Plug 'Rip-Rip/clang_complete'                  "c的补全
-Plug 'vim-syntastic/syntastic'
-"Plug 'w0rp/ale'                                "各种语法检查和补全
-"Plug 'vim-scripts/AutoComplPop'
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' } " php 类补全
+Plug 'scrooloose/nerdtree'                                        " 目录树
+Plug 'scrooloose/nerdcommenter'                                   " 注释补全
+Plug 'ctrlpvim/ctrlp.vim'                                         " 快速查找文件
+Plug 'ervandew/supertab'                                          " tab 键补全
+Plug 'majutsushi/tagbar'                                          " 显示本文件函数
+Plug 'bronson/vim-trailing-whitespace'                            " 显示行尾空格
+Plug 'junegunn/vim-easy-align'                                    " 根据符号对齐
+Plug 'fatih/vim-go'                                               " vimgo
+Plug 'mattn/emmet-vim'                                            " <>标签
+Plug 'Yggdroot/vim-mark'                                          " <leader>m 高亮
+Plug 'brooth/far.vim'                                             " 快速找字符串 F xx **
+Plug 'posva/vim-vue'                                              " vim
+Plug 'Rip-Rip/clang_complete'                                     " c的补全
+Plug 'w0rp/ale'
 Plug 'KeitaNakamura/neodark.vim'
 call plug#end()
 
 
+"   'php': ['phpstan -l 7 -c /home/homework/MyConfigure/phpstan.neon '],
 "map <c-e> :ALEDetail<cr>
 
 "clang_complete
@@ -160,12 +158,9 @@ let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/]vendor$',
 \}
 
-" phpcheck
-" let g:PHP_SYNTAX_CHECK_BIN =
-
 " supertab 和 phpcd补全的配置
 " phpcd 需要pcntl拓展 和 .phpcd.vim在根目录下指定类自动加载文件
-" let g:phpcd_autoload_path =
+
 " 通常是使用spl_autoload_register函数
 let g:SuperTabRetainCompletionType=0
 let g:SuperTabDefaultCompletionType = 'context'
@@ -189,11 +184,6 @@ let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextD
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc']
 let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
 
-"autocmd FileType php
-    "\ call SuperTabChain(&omnifunc, "<c-p>") |
-    "\ set omnifunc=phpcd#CompletePHP |
-    "\ call SuperTabSetDefaultCompletionType("<c-x><c-u>")
-
 " 等号对齐
 xmap ga <Plug>(EasyAlign)
 
@@ -201,5 +191,17 @@ xmap ga <Plug>(EasyAlign)
 " 依赖phpstan
 " composer require --dev phpstan/phpstan
 " 配置文件phpstan.neon
-let g:syntastic_php_checkers = ['php', 'phpstan']
-let g:syntastic_php_phpstan_args = " -l 7 -c /home/homework/MyConfigure/phpstan.neon "
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+\   'php': ['phpstan'],
+\}
+let g:ale_php_phpstan_configuration = '/home/homework/MyConfigure/phpstan.neon'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+nmap <Leader>d :ALEDetail<CR>
