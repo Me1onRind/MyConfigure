@@ -82,16 +82,18 @@ Plug 'junegunn/vim-easy-align'                                    " 根据符号
 Plug 'fatih/vim-go'                                               " vimgo
 Plug 'mattn/emmet-vim'                                            " <>标签
 Plug 'Yggdroot/vim-mark'                                          " <leader>m 高亮
-Plug 'brooth/far.vim'                                             " 快速找字符串 F xx **
+Plug 'rking/ag.vim'                                               " 快速查找字符串
 Plug 'posva/vim-vue'                                              " vim
 Plug 'Rip-Rip/clang_complete'                                     " c的补全
-Plug 'w0rp/ale'
-Plug 'KeitaNakamura/neodark.vim'
+Plug 'w0rp/ale'                                                   " 异步代码检查
+Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 call plug#end()
 
-
-"   'php': ['phpstan -l 7 -c /home/homework/MyConfigure/phpstan.neon '],
-"map <c-e> :ALEDetail<cr>
+"colorscheme gruvbox
+"colorscheme neodark
+colorscheme peachpuff
+let g:neodark#terminal_transparent = 1
+hi Normal ctermfg=252 ctermbg=none
 
 "clang_complete
 let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
@@ -101,13 +103,6 @@ let g:clang_complete_macros=1 "补全宏
 "set path=.,/usr/include,,
 "let g:clang_complete_copen=1
 " .clang_complete 定义自定义引用的头文件
-
-"colorscheme gruvbox
-"colorscheme neodark
-colorscheme peachpuff
-
-let g:neodark#terminal_transparent = 1
-hi Normal ctermfg=252 ctermbg=none
 
 "vim-go
 ":GoUpdateBinaries
@@ -205,3 +200,9 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
 nmap <Leader>d :ALEDetail<CR>
+
+" 代码搜索
+" 依赖 the_silver_searcher yum/brew 安装即可
+" ag 字符串
+let g:ag_working_path_mode = 'r'
+let g:ag_highlight = 1
