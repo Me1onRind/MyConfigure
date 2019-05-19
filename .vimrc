@@ -2,6 +2,8 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=ucs-bom,utf-8,latin1
 endif
 
+"using python
+
 set bs=indent,eol,start		" allow backspacing over everything in insert mode
 set viminfo='20,\"50	" read/write a .viminfo file, don't store more
 			" than 50 lines of registers
@@ -50,11 +52,11 @@ endif
 
 filetype plugin on
 
-"if &term=="xterm"
-     "set t_Co=256
-     "set t_Sb=[4%dm
-     "set t_Sf=[3%dm
-"endif
+if &term=="xterm"
+     set t_Co=256
+     set t_Sb=[4%dm
+     set t_Sf=[3%dm
+endif
 
 " 以下为个人设置
 set expandtab "tab转化为空格
@@ -71,7 +73,6 @@ nmap <C-L> :MarkClear<CR>:noh<CR>
 nmap gr gT
 
 call plug#begin('~/.vim/plugged')
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' } " php 类补全
 Plug 'scrooloose/nerdtree'                                        " 目录树
 Plug 'scrooloose/nerdcommenter'                                   " 注释补全
 Plug 'ctrlpvim/ctrlp.vim'                                         " 快速查找文件
@@ -83,31 +84,21 @@ Plug 'fatih/vim-go'                                               " vimgo
 Plug 'mattn/emmet-vim'                                            " <>标签
 Plug 'Yggdroot/vim-mark'                                          " <leader>m 高亮
 Plug 'rking/ag.vim'                                               " 快速查找字符串
-Plug 'posva/vim-vue'                                              " vim
-Plug 'Rip-Rip/clang_complete'                                     " c的补全
 Plug 'w0rp/ale'                                                   " 异步代码检查
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
+Plug 'airblade/vim-rooter'                                        " 根目录
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}      " 拓展安装在 ~/.config
 call plug#end()
 
-"colorscheme gruvbox
-"colorscheme neodark
-colorscheme peachpuff
+colorscheme neodark
 let g:neodark#terminal_transparent = 1
+let g:NERDTreeNodeDelimiter = "\u00a0"
 hi Normal ctermfg=252 ctermbg=none
-
-"clang_complete
-let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
-let g:clang_complete_macros=1 "补全宏
-"let g:clang_snippets=1
-"set path=.,/usr/include,~/Downloads/nginx/src/,,
-"set path=.,/usr/include,,
-"let g:clang_complete_copen=1
-" .clang_complete 定义自定义引用的头文件
 
 "vim-go
 ":GoUpdateBinaries
 ":GoInstallBinaries
-let g:go_get_update = 0
+"let g:go_get_update = 0
 "let g:go_highlight_operators = 1
 let g:go_highlight_function_arguments = 1
 let g:go_highlight_function_calls = 1
@@ -115,15 +106,14 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
-let g:go_gocode_propose_source = 0
-let g:go_gocode_autobuild = 1
-"let g:go_fmt_command = "goimports"
-
-"let g:go_highlight_variable_declarations = 1
-"let g:go_highlight_variable_assignments = 1
+let g:go_def_mode='gopls'
 
 " nerdtree
 nmap <F2> :NERDTreeToggle<CR>
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
 
 "tagbar  修改~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim
 nmap <F3> :TagbarToggle<CR>
@@ -154,16 +144,12 @@ let g:ctrlp_custom_ignore = {
 \}
 
 " supertab 和 phpcd补全的配置
-" phpcd 需要pcntl拓展 和 .phpcd.vim在根目录下指定类自动加载文件
-
-" 通常是使用spl_autoload_register函数
 let g:SuperTabRetainCompletionType=0
 let g:SuperTabDefaultCompletionType = 'context'
 let g:SuperTabCrMapping = 1
 let g:SuperTabRetainCompletionDuration = 'completion'
 let g:SuperTabLongestHighlight = 1
 let g:SuperTabLongestEnhanced = 1
-"let g:SuperTabMappingTabLiteral = 0
 
 function! MyTagContext()
     let str = getline('.')
@@ -179,7 +165,10 @@ let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextD
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc']
 let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
 
-" 等号对齐
+" phpcd 需要pcntl拓展 和 .phpcd.vim在根目录下指定类自动加载文件
+" 通常是使用spl_autoload_register函数
+
+" 对齐
 xmap ga <Plug>(EasyAlign)
 
 " php语法检查
