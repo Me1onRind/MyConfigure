@@ -73,6 +73,7 @@ nmap <C-L> :MarkClear<CR>:noh<CR>
 nmap gr gT
 
 call plug#begin('~/.vim/plugged')
+"Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 Plug 'scrooloose/nerdtree'                                        " 目录树
 Plug 'scrooloose/nerdcommenter'                                   " 注释补全
 Plug 'ctrlpvim/ctrlp.vim'                                         " 快速查找文件
@@ -84,7 +85,6 @@ Plug 'fatih/vim-go'                                               " vimgo
 Plug 'mattn/emmet-vim'                                            " <>标签
 Plug 'Yggdroot/vim-mark'                                          " <leader>m 高亮
 Plug 'rking/ag.vim'                                               " 快速查找字符串
-Plug 'w0rp/ale'                                                   " 异步代码检查
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}      " 拓展安装在 ~/.config
@@ -98,7 +98,7 @@ hi Normal ctermfg=252 ctermbg=none
 "vim-go
 ":GoUpdateBinaries
 ":GoInstallBinaries
-"let g:go_get_update = 0
+let g:go_get_update = 0
 "let g:go_highlight_operators = 1
 let g:go_highlight_function_arguments = 1
 let g:go_highlight_function_calls = 1
@@ -171,24 +171,10 @@ let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
 " 对齐
 xmap ga <Plug>(EasyAlign)
 
-" php语法检查
-" 依赖phpstan
-" composer require --dev phpstan/phpstan
-" 配置文件phpstan.neon
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-\   'php': ['phpstan'],
-\}
-let g:ale_php_phpstan_configuration = '/home/homework/MyConfigure/phpstan.neon'
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
-let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-nmap <Leader>d :ALEDetail<CR>
+" coc.nvim
+" CocConfig CocInstall CocList
+nmap sn <Plug>(coc-diagnostic-next)
+nmap tt <Plug>(coc-definition)
 
 " 代码搜索
 " 依赖 the_silver_searcher yum/brew 安装即可
