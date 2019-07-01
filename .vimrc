@@ -69,6 +69,7 @@ set ai
 set cindent
 set ignorecase
 set pastetoggle=<F9>
+set updatetime=200
 nmap <silent> <C-L> :MarkClear<CR>:noh<CR>
 nmap <silent> gr gT
 nmap <silent> qq :pclose<CR>
@@ -89,10 +90,11 @@ Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用
 Plug 'airblade/vim-rooter'                                        " 根目录
 
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}         " 拓展安装在 ~/.config
-Plug 'Maxattax97/coc-ccls', {'do': 'yarn install --frozen-lockfile'} " c/c++ 补全
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'} " python 补全
-Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'} " php 补全
-"Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}       " sh 补全
+Plug 'Maxattax97/coc-ccls', {'do': 'yarn install'} " c/c++ 补全
+Plug 'neoclide/coc-python', {'do': 'yarn install'} " python 补全
+Plug 'marlonfan/coc-phpls', {'do': 'yarn install'} " php 补全
+"Plug 'josa42/coc-go', {'do': 'yarn install'} " go 补全
+"Plug 'josa42/coc-sh', {'do': 'yarn install'}       " sh 补全
 call plug#end()
 
 colorscheme neodark
@@ -103,6 +105,8 @@ hi Normal ctermfg=252 ctermbg=none
 "vim-go
 ":GoUpdateBinaries
 ":GoInstallBinaries
+let g:go_metalinter_autosave = 0
+let g:go_mod_fmt_autosave = 0
 let g:go_get_update = 0
 let g:go_highlight_function_arguments = 1
 let g:go_highlight_function_calls = 1
@@ -110,7 +114,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
-let g:go_def_mode='gopls'
+"let g:go_def_mode='gopls'
 
 " nerdtree
 nmap <F2> :NERDTreeToggle<CR>
