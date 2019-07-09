@@ -78,7 +78,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'                                        " 目录树
 Plug 'scrooloose/nerdcommenter'                                   " 注释补全
 Plug 'ctrlpvim/ctrlp.vim'                                         " 快速查找文件
-Plug 'ervandew/supertab'                                          " tab 键补全
 Plug 'majutsushi/tagbar'                                          " 显示本文件函数
 Plug 'bronson/vim-trailing-whitespace'                            " 显示行尾空格
 Plug 'junegunn/vim-easy-align'                                    " 根据符号对齐
@@ -151,28 +150,6 @@ let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/]vendor$',
 \}
 
-" supertab 和 phpcd补全的配置
-let g:SuperTabRetainCompletionType=0
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabCrMapping = 1
-let g:SuperTabRetainCompletionDuration = 'completion'
-let g:SuperTabLongestHighlight = 1
-let g:SuperTabLongestEnhanced = 1
-
-function! MyTagContext()
-    let str = getline('.')
-    let line = col('.') . 'c'
-    if str =~ '[''"$][a-zA-Z0-9]*\%' . line
-        return "\<c-p>"
-    elseif str =~ '[0-9]\+\%' . line
-        return "\<c-p>"
-    endif
-endfunction
-
-let g:SuperTabCompletionContexts = ['MyTagContext', 's:ContextText', 's:ContextDiscover']
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc']
-let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
-
 " 对齐
 xmap ga <Plug>(EasyAlign)
 
@@ -184,6 +161,18 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> ge <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" 检查上前一个位置是否为空格
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" tab键进行多次映射
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
