@@ -69,7 +69,8 @@ Plug 'junegunn/vim-easy-align'                                    " 根据符号
 Plug 'fatih/vim-go'                                               " vimgo
 Plug 'mattn/emmet-vim'                                            " <>标签
 Plug 'Yggdroot/vim-mark'                                          " <leader>m 高亮
-Plug 'rking/ag.vim'                                               " 快速查找字符串
+"Plug 'rking/ag.vim'                                               " 快速查找字符串
+Plug 'wsdjeg/FlyGrep.vim'
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
 
@@ -167,8 +168,5 @@ function! s:show_documentation()
   endif
 endfunction
 
-" 代码搜索
-" 依赖 the_silver_searcher yum/brew 安装即可
-" ag 字符串
-let g:ag_working_path_mode = 'r'
-let g:ag_highlight = 1
+nnoremap <leader>/ :FlyGrep<cr>
+
