@@ -69,17 +69,14 @@ Plug 'junegunn/vim-easy-align'                                    " 根据符号
 Plug 'fatih/vim-go'                                               " vimgo
 Plug 'mattn/emmet-vim'                                            " <>标签
 Plug 'Yggdroot/vim-mark'                                          " <leader>m 高亮
-"Plug 'rking/ag.vim'                                               " 快速查找字符串
 Plug 'wsdjeg/FlyGrep.vim'
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}         " 拓展安装在 ~/.config
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "拓展安装在 ~/.config
 Plug 'Maxattax97/coc-ccls', {'do': 'yarn install'} " c/c++ 补全
 Plug 'neoclide/coc-python', {'do': 'yarn install'} " python 补全
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install'} " php 补全
-"Plug 'josa42/coc-go', {'do': 'yarn install'} " go 补全
-"Plug 'josa42/coc-sh', {'do': 'yarn install'}       " sh 补全
 call plug#end()
 
 colorscheme neodark
@@ -168,5 +165,4 @@ function! s:show_documentation()
   endif
 endfunction
 
-nnoremap <leader>/ :FlyGrep<cr>
-
+nnoremap <C-f> :FlyGrep<cr>
