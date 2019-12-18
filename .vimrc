@@ -58,6 +58,8 @@ set updatetime=200
 nmap <silent> <C-L> :MarkClear<CR>:noh<CR>
 nmap <silent> gr gT
 nmap <silent> qq :pclose<CR>
+nmap <F1> i<C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR><Esc>
+imap <F1> <C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'                                        " 目录树

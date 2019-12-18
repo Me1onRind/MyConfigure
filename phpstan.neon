@@ -1,9 +1,0 @@
-parameters:
-    autoload_directories:
-        - %currentWorkingDirectory%
-        - '/home/homework/php/phplib/laxin/common/'
-        - '/home/homework/php/phplib/laxin/util/'
-        - '/home/homework/php/phplib/laxin/const/'
-        - '/home/homework/php/phplib/hk/util/'
-        - '/home/homework/php/phplib/bd/'
-
