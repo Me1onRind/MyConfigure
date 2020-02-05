@@ -5,9 +5,17 @@
             "command": "gopls",
             "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
             "filetypes": ["go"]
+        },
+        "clangd": {
+            "command": "clangd",
+            "args": ["--background-index"],
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["c", "cpp", "objc", "objcpp"]
         }
     },
     "intelephense.diagnostics.undefinedTypes": false,
     "intelephense.diagnostics.undefinedFunctions":false,
-    "intelephense.diagnostics.undefinedMethods":false
+    "intelephense.diagnostics.undefinedMethods":false,
+    "java.jdt.ls.vmargs": "-javaagent:/root/.m2/repository/org/projectlombok/lombok/1.18.4/lombok-1.18.4.jar -Xbootclasspath/a:/root/.m2/repository/org/projectlombok/lombok/1.18.4/lombok-1.18.4.jar",
+    "java.jdt.ls.home":"/usr/local/src/eclipse.jdt.ls-0.32.0"
 }

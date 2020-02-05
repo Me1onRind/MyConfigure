@@ -76,9 +76,10 @@ Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用
 Plug 'airblade/vim-rooter'                                        " 根目录
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "拓展安装在 ~/.config
-Plug 'Maxattax97/coc-ccls', {'do': 'yarn install'} " c/c++ 补全
+"Plug 'Maxattax97/coc-ccls', {'do': 'yarn install'} " c/c++ 补全
 Plug 'neoclide/coc-python', {'do': 'yarn install'} " python 补全
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install'} " php 补全
+Plug 'neoclide/coc-java', {'do': 'yarn install'} " php 补全
 call plug#end()
 
 colorscheme neodark
