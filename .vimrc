@@ -74,10 +74,11 @@ Plug 'Yggdroot/vim-mark'                                          " <leader>m �
 Plug 'wsdjeg/FlyGrep.vim'
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
+"Plug 'aperezdc/vim-template'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "拓展安装在 ~/.config
 "Plug 'Maxattax97/coc-ccls', {'do': 'yarn install'} " c/c++ 补全
-Plug 'neoclide/coc-python', {'do': 'yarn install'} " python 补全
+"Plug 'neoclide/coc-python', {'do': 'yarn install'} " python 补全
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install'} " php 补全
 Plug 'neoclide/coc-java', {'do': 'yarn install'} " php 补全
 call plug#end()
@@ -170,3 +171,8 @@ function! s:show_documentation()
 endfunction
 
 nnoremap <C-f> :FlyGrep<cr>
+
+" 模板文件
+autocmd BufNewFile *Mapper.xml 0r ~/MyConfigure/vim-template/mapper.xml
+autocmd BufNewFile *Mapper.java 0r ~/MyConfigure/vim-template/mapper.java
+autocmd BufNewFile *Controller.java 0r ~/MyConfigure/vim-template/controller.java
