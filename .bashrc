@@ -6,20 +6,6 @@ export TERM=xterm
 # Make bash check its window size after a process completes
 shopt -s checkwinsize
 
-[ -r "/etc/bashrc_$TERM_PROGRAM" ] && . "/etc/bashrc_$TERM_PROGRAM"
-PATH=$PATH:/usr/local/bin
-
-alias ll="ls -alGh"
-alias grep="grep --color"
-alias sh="bash"
-
-alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
-alias note="cd ~/Desktop/simplenote"
-alias de="cd ~/Desktop"
-
-alias centos="ssh root@192.168.31.111"
-alias not="cd ~/Desktop/simplenote"
-
 alias g="/Users/me1onrind/gopath/bin/gocode -s -debug -sock unix -addr 127.0.0.1:37373"
 
 # go
@@ -53,12 +39,6 @@ function git_branch {
 }
 export PS1='[\u@mbp \W\[\033[01;32m\]$(git_branch)\[\033[00m\]]\$ '
 
-alias zyb="ssh -p 8822 homework@192.168.240.235"
-alias rl="ssh zenglening@relay.afpai.com"
-
-# php
-alias php7="/usr/local/php7/bin/php"
-PATH=$PATH:/Users/me1onrind/.composer/vendor/bin
 
 # lazygit
 alias lg="lazygit"
