@@ -53,13 +53,16 @@ set completeopt-=preview "关闭补全时的窗口
 set ai
 set cindent
 set ignorecase
-set pastetoggle=<F9>
+set pastetoggle=<F1>
 set updatetime=200
 nmap <silent> <C-L> :MarkClear<CR>:noh<CR>
 nmap <silent> gr gT
 nmap <silent> qq :pclose<CR>
-nmap <F1> i<C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR><Esc>
-imap <F1> <C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR>
+"nmap <F1> i<C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR><Esc>
+"imap <F1> <C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR>
+" 上/下 移行
+nnoremap el  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap dl  :<c-u>execute 'move +'. v:count1<cr>
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'                                        " 目录树
@@ -74,11 +77,8 @@ Plug 'Yggdroot/vim-mark'                                          " <leader>m �
 Plug 'wsdjeg/FlyGrep.vim'
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
-"Plug 'aperezdc/vim-template'
-
+Plug 'voldikss/vim-floaterm'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "拓展安装在 ~/.config
-"Plug 'Maxattax97/coc-ccls', {'do': 'yarn install'} " c/c++ 补全
-"Plug 'neoclide/coc-python', {'do': 'yarn install'} " python 补全
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install'} " php 补全
 Plug 'neoclide/coc-java', {'do': 'yarn install'} " php 补全
 call plug#end()
@@ -94,6 +94,7 @@ hi Normal ctermfg=252 ctermbg=none
 let g:go_metalinter_autosave = 0
 let g:go_mod_fmt_autosave = 0
 let g:go_get_update = 0
+let g:go_template_autocreate = 0
 let g:go_highlight_function_arguments = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_types = 1
@@ -109,7 +110,7 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<cr>'],
     \ }
 
-"tagbar  修改~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim
+" tagbar  修改~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim
 nmap <F3> :TagbarToggle<CR>
 let g:tagbar_expand = 1
 let g:tagbar_autofocus = 1
@@ -176,3 +177,7 @@ nnoremap <C-f> :FlyGrep<cr>
 autocmd BufNewFile *Mapper.xml 0r ~/MyConfigure/vim-template/mapper.xml
 autocmd BufNewFile *Mapper.java 0r ~/MyConfigure/vim-template/mapper.java
 autocmd BufNewFile *Controller.java 0r ~/MyConfigure/vim-template/controller.java
+autocmd BufNewFile *.go 0r ~/MyConfigure/vim-template/template.go
+
+let g:floaterm_keymap_toggle = '<F10>'
+let g:floaterm_type = 'normal'
