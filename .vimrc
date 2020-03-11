@@ -58,29 +58,30 @@ set updatetime=200
 nmap <silent> <C-L> :MarkClear<CR>:noh<CR>
 nmap <silent> gr gT
 nmap <silent> qq :pclose<CR>
-"nmap <F1> i<C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR><Esc>
 "imap <F1> <C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR>
+"nmap <F1> i<C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR><Esc>
 " 上/下 移行
-nnoremap el  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap dl  :<c-u>execute 'move +'. v:count1<cr>
+nmap el  :<c-u>execute 'move -1-'. v:count1<cr>
+nmap dl  :<c-u>execute 'move +'. v:count1<cr>
+" 分屏
+nmap fp <c-w>v
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'                                        " 目录树
 Plug 'scrooloose/nerdcommenter'                                   " 注释补全
-Plug 'ctrlpvim/ctrlp.vim'                                         " 快速查找文件
 Plug 'majutsushi/tagbar'                                          " 显示本文件函数
 Plug 'bronson/vim-trailing-whitespace'                            " 显示行尾空格
 Plug 'junegunn/vim-easy-align'                                    " 根据符号对齐
 Plug 'fatih/vim-go'                                               " vimgo
 Plug 'mattn/emmet-vim'                                            " <>标签
 Plug 'Yggdroot/vim-mark'                                          " <leader>m 高亮
-Plug 'wsdjeg/FlyGrep.vim'
+Plug 'wsdjeg/FlyGrep.vim'                                         " 全文搜索
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
-Plug 'voldikss/vim-floaterm'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} "拓展安装在 ~/.config
-Plug 'marlonfan/coc-phpls', {'do': 'yarn install'} " php 补全
-Plug 'neoclide/coc-java', {'do': 'yarn install'} " php 补全
+Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
+Plug 'marlonfan/coc-phpls', {'do': 'yarn install'}                " php 补全
+Plug 'neoclide/coc-java', {'do': 'yarn install'}                  " java 补全
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                 " 文件搜索
 call plug#end()
 
 colorscheme neodark
@@ -105,10 +106,6 @@ let g:go_highlight_chan_whitespace_error = 1
 
 " nerdtree
 nmap <F2> :NERDTreeToggle<CR>
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
-    \ 'AcceptSelection("t")': ['<cr>'],
-    \ }
 
 " tagbar  修改~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim
 nmap <F3> :TagbarToggle<CR>
@@ -130,12 +127,13 @@ let mapleader = ","
 " count,cu 光标以下count行取消注释
 " count,c空格 注释/反注释
 
-"行尾空格
+" 行尾空格
 map <leader><space> :FixWhitespace<cr>
 
-" ctrlp 忽略文件夹
-let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/]vendor$',
+" leaderF
+let g:Lf_WildIgnore = {
+    \ 'dir': ['.svn','.git','.hg', 'vendor'],
+    \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
 \}
 
 " 对齐
