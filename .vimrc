@@ -179,3 +179,6 @@ autocmd BufNewFile *.go 0r ~/MyConfigure/vim-template/template.go
 
 let g:floaterm_keymap_toggle = '<F10>'
 let g:floaterm_type = 'normal'
+
+" leaderf
+let g:Lf_ShortcutF = '<C-P>'
