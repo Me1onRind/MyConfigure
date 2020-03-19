@@ -79,7 +79,7 @@ Plug 'wsdjeg/FlyGrep.vim'                                         " 全文搜索
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
-Plug 'marlonfan/coc-phpls', {'do': 'yarn install'}                " php 补全
+"Plug 'marlonfan/coc-phpls', {'do': 'yarn install'}                " php 补全
 Plug 'neoclide/coc-java', {'do': 'yarn install'}                  " java 补全
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                 " 文件搜索
 call plug#end()
@@ -172,10 +172,10 @@ endfunction
 nnoremap <C-f> :FlyGrep<cr>
 
 " 模板文件
-autocmd BufNewFile *Mapper.xml 0r ~/MyConfigure/vim-template/mapper.xml
-autocmd BufNewFile *Mapper.java 0r ~/MyConfigure/vim-template/mapper.java
-autocmd BufNewFile *Controller.java 0r ~/MyConfigure/vim-template/controller.java
-autocmd BufNewFile *.go 0r ~/MyConfigure/vim-template/template.go
+autocmd BufNewFile *Mapper.xml 0r ~/myConfigure/vim-template/mapper.xml
+autocmd BufNewFile *Mapper.java 0r ~/myConfigure/vim-template/mapper.java
+autocmd BufNewFile *Controller.java 0r ~/myConfigure/vim-template/controller.java
+autocmd BufNewFile *.go 0r ~/myConfigure/vim-template/template.go
 
 let g:floaterm_keymap_toggle = '<F10>'
 let g:floaterm_type = 'normal'
