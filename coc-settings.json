@@ -1,5 +1,4 @@
 {
-    "diagnostic.refreshAfterSave": true,
     "languageserver": {
         "golang": {
             "command": "gopls",
@@ -11,76 +10,22 @@
             "args": ["--background-index"],
             "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
             "filetypes": ["c", "cpp", "objc", "objcpp"]
-        },
-        "python": {
-            "command": "python3",
-            "args": [
-                "-mpyls",
-                "-vv"
-            ],
-            "filetypes": [
-                "python"
-            ],
-            "settings": {
-                "pyls": {
-                    "enable": true,
-                    "trace": {
-                        "server": "verbose"
-                    },
-                    "commandPath": "",
-                    "configurationSources": [
-                        "pycodestyle"
-                    ],
-                    "plugins": {
-                        "jedi_completion": {
-                            "enabled": true
-                        },
-                        "jedi_hover": {
-                            "enabled": true
-                        },
-                        "jedi_references": {
-                            "enabled": true
-                        },
-                        "jedi_signature_help": {
-                            "enabled": true
-                        },
-                        "jedi_symbols": {
-                            "enabled": true,
-                            "all_scopes": true
-                        },
-                        "mccabe": {
-                            "enabled": true,
-                            "threshold": 15
-                        },
-                        "preload": {
-                            "enabled": true
-                        },
-                        "pycodestyle": {
-                            "enabled": true
-                        },
-                        "pydocstyle": {
-                            "enabled": false,
-                            "match": "(?!test_).*\\.py",
-                            "matchDir": "[^\\.].*"
-                        },
-                        "pyflakes": {
-                            "enabled": true
-                        },
-                        "rope_completion": {
-                            "enabled": true
-                        },
-                        "yapf": {
-                            "enabled": true
-                        }
-                    }
-                }
-            }
         }
     },
 
-    "intelephense.diagnostics.undefinedTypes": false,
-    "intelephense.diagnostics.undefinedFunctions":false,
-    "intelephense.diagnostics.undefinedMethods":false,
+    "python.pythonPath": "python2",
+    "python.linting.pylintArgs": [
+        "--disable=C",
+        "--disable=E1101",
+        "--disable=E0611",
+        "--disable=E0401",
+        "--disable=W0703",
+        "--disable=W0232",
+        "--disable=W0231",
+        "--disable=R0903",
+        "--disable=R0902",
+        "--disable=W0312"
+    ],
     "java.jdt.ls.vmargs": "-javaagent:/root/.m2/repository/org/projectlombok/lombok/1.18.4/lombok-1.18.4.jar -Xbootclasspath/a:/root/.m2/repository/org/projectlombok/lombok/1.18.4/lombok-1.18.4.jar",
     "java.jdt.ls.home":"/usr/local/src/eclipse.jdt.ls-0.32.0"
 }

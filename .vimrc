@@ -75,12 +75,12 @@ Plug 'junegunn/vim-easy-align'                                    " 根据符号
 Plug 'fatih/vim-go'                                               " vimgo
 Plug 'mattn/emmet-vim'                                            " <>标签
 Plug 'Yggdroot/vim-mark'                                          " <leader>m 高亮
-Plug 'wsdjeg/FlyGrep.vim'                                         " 全文搜索
+Plug 'wsdjeg/FlyGrep.vim'                                         " 全文搜索 best use ag
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
-"Plug 'marlonfan/coc-phpls', {'do': 'yarn install'}                " php 补全
 Plug 'neoclide/coc-java', {'do': 'yarn install'}                  " java 补全
+Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python need   pip install jedi
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                 " 文件搜索
 call plug#end()
 
@@ -106,6 +106,7 @@ let g:go_highlight_chan_whitespace_error = 1
 
 " nerdtree
 nmap <F2> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$']
 
 " tagbar  修改~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim
 nmap <F3> :TagbarToggle<CR>
@@ -169,16 +170,54 @@ function! s:show_documentation()
   endif
 endfunction
 
+" fly grep
+let g:spacevim_data_dir = '~/.cache'
 nnoremap <C-f> :FlyGrep<cr>
+
 
 " 模板文件
 autocmd BufNewFile *Mapper.xml 0r ~/myConfigure/vim-template/mapper.xml
 autocmd BufNewFile *Mapper.java 0r ~/myConfigure/vim-template/mapper.java
 autocmd BufNewFile *Controller.java 0r ~/myConfigure/vim-template/controller.java
 autocmd BufNewFile *.go 0r ~/myConfigure/vim-template/template.go
+autocmd FileType python setlocal shiftwidth=4 tabstop=4 noexpandtab
 
 let g:floaterm_keymap_toggle = '<F10>'
 let g:floaterm_type = 'normal'
 
 " leaderf
 let g:Lf_ShortcutF = '<C-P>'
+
+" author注释
+map <F4> ms:call AddAuthor()<cr>'S
+function AddAuthor()
+    let n=1
+    while n < 11
+        let line = getline(n)
+        if line=~'[#]*\s*\*\s*\S*Last\s*modified\s*:\s*\S*.*$'
+        call UpdateTitle()
+        return
+    endif
+    let n = n + 1
+    endwhile
+    if &filetype == 'python'
+        call AddTitleForPython()
+    else
+        call AddTitleForC()
+    endif
+
+endfunction
+
+"" 表示非.sh或.py结尾的文件添加此函数注释
+function AddTitleForC()
+    call append(0,"# -*- coding: utf-8 -*-")
+    call append(1,"# author: lening.zeng@shopee.com")
+    "call append(2,"# * Create time   : ".strftime("%Y-%m-%d %H:%M"))
+endfunction
+
+"" 表示.py添加此函数注释
+function AddTitleForPython()
+    call append(0,"# -*- coding: utf-8 -*-")
+    call append(1,"# author: lening.zeng@shopee.com")
+endfunction
+
