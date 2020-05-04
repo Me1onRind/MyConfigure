@@ -102,6 +102,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
+let g:go_echo_go_info = 0
 "let g:go_def_mode='gopls'
 
 " nerdtree
