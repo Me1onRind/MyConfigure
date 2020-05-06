@@ -113,14 +113,6 @@ nmap <F3> :TagbarToggle<CR>
 let g:tagbar_expand = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_silent = 1
-" 显示的类型，可参考 ~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim 增添
-let g:tagbar_type_php = {
-   \'ctagstype': 'php',
-   \'kinds':[
-        \ 'f:function',
-        \ 'd:constant definitions',
-   \]
-\}
 
 "注释插件
 let mapleader = ","
