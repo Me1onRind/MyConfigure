@@ -92,8 +92,11 @@ hi Normal ctermfg=252 ctermbg=none
 "vim-go
 ":GoUpdateBinaries
 ":GoInstallBinaries
-let g:go_metalinter_autosave = 0
+let g:go_metalinter_autosave=0
 let g:go_mod_fmt_autosave = 0
+let g:go_fmt_autosave = 0
+let g:go_fmt_autoclose = 0
+let g:go_imports_autosave = 0
 let g:go_get_update = 0
 let g:go_template_autocreate = 0
 let g:go_highlight_function_arguments = 1
@@ -102,7 +105,6 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
-let g:go_echo_go_info = 0
 "let g:go_def_mode='gopls'
 
 " nerdtree
@@ -139,7 +141,7 @@ nmap <silent> sn <Plug>(coc-diagnostic-next)
 nmap <silent> sm <Plug>(coc-diagnostic-prev)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> ge <Plug>(coc-references)
+nmap <silent> gc <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <silent> gi :CocAction java.action.organizeImports<CR>
 
