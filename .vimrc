@@ -81,7 +81,10 @@ Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
 Plug 'neoclide/coc-java', {'do': 'yarn install'}                  " java 补全
 Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python need   pip install jedi
+Plug 'weirongxu/coc-explorer', {'do': 'yarn install'}             " 目录树
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                 " 文件搜索
+Plug 'tpope/vim-fugitive'                                         " git
+Plug 'buoto/gotests-vim'                                          " gotests
 call plug#end()
 
 colorscheme neodark
@@ -105,6 +108,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
+let g:go_echo_go_info = 0
 "let g:go_def_mode='gopls'
 
 " nerdtree
@@ -116,6 +120,10 @@ nmap <F3> :TagbarToggle<CR>
 let g:tagbar_expand = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_silent = 1
+
+" git plug
+nmap gb :Git blame<CR>
+
 
 "注释插件
 let mapleader = ","
@@ -175,7 +183,7 @@ autocmd BufNewFile *Mapper.xml 0r ~/myConfigure/vim-template/mapper.xml
 autocmd BufNewFile *Mapper.java 0r ~/myConfigure/vim-template/mapper.java
 autocmd BufNewFile *Controller.java 0r ~/myConfigure/vim-template/controller.java
 autocmd BufNewFile *.go 0r ~/myConfigure/vim-template/template.go
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 noexpandtab
+autocmd FileType python setlocal shiftwidth=0 tabstop=4 noexpandtab
 
 let g:floaterm_keymap_toggle = '<F10>'
 let g:floaterm_type = 'normal'
@@ -184,7 +192,8 @@ let g:floaterm_type = 'normal'
 let g:Lf_ShortcutF = '<C-P>'
 
 " author注释
-map <F4> ms:call AddAuthor()<cr>'S
+nmap <F4> ms:call AddAuthor()<cr>'S
+imap <F1> "git.garena.com/shopee/bg-logistics/logistics/logistics-line-site-system"
 function AddAuthor()
     let n=1
     while n < 11
@@ -215,4 +224,7 @@ function AddTitleForPython()
     call append(0,"# -*- coding: utf-8 -*-")
     call append(1,"# author: lening.zeng@shopee.com")
 endfunction
+
+
+"nmap <F2> :CocCommand explorer<CR>
 
