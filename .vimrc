@@ -75,17 +75,19 @@ Plug 'junegunn/vim-easy-align'                                    " 根据符号
 Plug 'fatih/vim-go'                                               " vimgo
 Plug 'mattn/emmet-vim'                                            " <>标签
 Plug 'Yggdroot/vim-mark'                                          " <leader>m 高亮
-Plug 'wsdjeg/FlyGrep.vim'                                         " 全文搜索 best use ag
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
 Plug 'neoclide/coc-java', {'do': 'yarn install'}                  " java 补全
 Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python need   pip install jedi
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install'}             " 目录树
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                 " 文件搜索
 Plug 'tpope/vim-fugitive'                                         " git
-Plug 'buoto/gotests-vim'                                          " gotests
+Plug 'dyng/ctrlsf.vim'                                            " 全局字符搜索
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                 " 文件搜索
 call plug#end()
+
+
+
 
 colorscheme neodark
 let g:neodark#terminal_transparent = 1
@@ -96,9 +98,9 @@ hi Normal ctermfg=252 ctermbg=none
 ":GoUpdateBinaries
 ":GoInstallBinaries
 let g:go_metalinter_autosave=0
-let g:go_mod_fmt_autosave = 0
-let g:go_fmt_autosave = 0
-let g:go_fmt_autoclose = 0
+"let g:go_mod_fmt_autosave = 0
+"let g:go_fmt_autosave = 0
+"let g:go_fmt_autoclose = 0
 let g:go_imports_autosave = 0
 let g:go_get_update = 0
 let g:go_template_autocreate = 0
@@ -110,6 +112,13 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
 let g:go_echo_go_info = 0
 "let g:go_def_mode='gopls'
+
+" 自动填充struct
+nmap gfs :GoFillStruct<CR>
+" go rename
+nmap gnm :GoRename
+" go switch to _test.go
+nmap gst :GoAlternate<CR>
 
 " nerdtree
 nmap <F2> :NERDTreeToggle<CR>
@@ -136,9 +145,10 @@ map <leader><space> :FixWhitespace<cr>
 
 " leaderF
 let g:Lf_WildIgnore = {
-    \ 'dir': ['.svn','.git','.hg', 'vendor'],
+    \ 'dir': ['.svn','.git','.hg','vendor'],
     \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
 \}
+let g:Lf_UseVersionControlTool = 0
 
 " 对齐
 xmap ga <Plug>(EasyAlign)
@@ -174,9 +184,23 @@ function! s:show_documentation()
 endfunction
 
 " fly grep
-let g:spacevim_data_dir = '~/.cache'
-nnoremap <C-f> :FlyGrep<cr>
+"let g:spacevim_data_dir = '~/.cache'
+"nnoremap <C-f> :FlyGrep<cr>
+"
 
+" ctrlsf
+" C-J C-K 切换匹配项目
+" 依赖ack/ag
+nmap <C-F> <Plug>CtrlSFPrompt
+"nnoremap <C-F>t :CtrlSFToggle<CR>
+
+let g:ctrlsf_auto_preview = 1
+let g:ctrlsf_position='bottom'
+let g:ctrlsf_auto_focus = {
+    \ "at" : "start",
+    \ "duration_less_than": 1000
+    \ }
+let g:ctrlsf_search_mode = 'async'
 
 " 模板文件
 autocmd BufNewFile *Mapper.xml 0r ~/myConfigure/vim-template/mapper.xml
@@ -187,9 +211,6 @@ autocmd FileType python setlocal shiftwidth=0 tabstop=4 noexpandtab
 
 let g:floaterm_keymap_toggle = '<F10>'
 let g:floaterm_type = 'normal'
-
-" leaderf
-let g:Lf_ShortcutF = '<C-P>'
 
 " author注释
 nmap <F4> ms:call AddAuthor()<cr>'S
@@ -227,4 +248,11 @@ endfunction
 
 
 "nmap <F2> :CocCommand explorer<CR>
+" gotests
+vmap test :GoTests<CR>
+let g:gotests_template_dir = "/Users/leningzeng/work/logistics-line-site-system/templates/gotests_1"
+let g:go_rename_command = 'gopls'
+
+"let g:ackprg = 'ag --nogroup --column'
+let g:Lf_ShortcutF = '<C-P>'
 
