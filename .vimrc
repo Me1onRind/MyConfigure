@@ -183,11 +183,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" fly grep
-"let g:spacevim_data_dir = '~/.cache'
-"nnoremap <C-f> :FlyGrep<cr>
-"
-
 " ctrlsf
 " C-J C-K 切换匹配项目
 " 依赖ack/ag
@@ -245,14 +240,3 @@ function AddTitleForPython()
     call append(0,"# -*- coding: utf-8 -*-")
     call append(1,"# author: lening.zeng@shopee.com")
 endfunction
-
-
-"nmap <F2> :CocCommand explorer<CR>
-" gotests
-vmap test :GoTests<CR>
-let g:gotests_template_dir = "/Users/leningzeng/work/logistics-line-site-system/templates/gotests_1"
-let g:go_rename_command = 'gopls'
-
-"let g:ackprg = 'ag --nogroup --column'
-let g:Lf_ShortcutF = '<C-P>'
-
