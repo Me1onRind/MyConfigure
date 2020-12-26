@@ -240,3 +240,6 @@ function AddTitleForPython()
     call append(0,"# -*- coding: utf-8 -*-")
     call append(1,"# author: lening.zeng@shopee.com")
 endfunction
+
+"let g:ackprg = 'ag --nogroup --column'
+let g:Lf_ShortcutF = '<C-P>'
