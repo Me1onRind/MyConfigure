@@ -78,15 +78,15 @@ Plug 'Yggdroot/vim-mark'                                          " <leader>m �
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
-Plug 'neoclide/coc-java', {'do': 'yarn install'}                  " java 补全
+Plug 'fannheyward/coc-sql', {'do': 'yarn install'}                " sql
+Plug 'neoclide/coc-yaml', {'do': 'yarn install'}                  " yml
+"Plug 'neoclide/coc-java', {'do': 'yarn install'}                 " java 补全
 Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python need   pip install jedi
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install'}             " 目录树
 Plug 'tpope/vim-fugitive'                                         " git
 Plug 'dyng/ctrlsf.vim'                                            " 全局字符搜索
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                 " 文件搜索
 call plug#end()
-
-
 
 
 colorscheme neodark
