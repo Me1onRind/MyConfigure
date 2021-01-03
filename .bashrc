@@ -1,6 +1,7 @@
 LANG="en_US.UTF-8"
 
 alias lg='lazygit' # https://github.com/jesseduffield/lazygit
+alias gr='goreplace'
 alias grep='grep --color'
 alias ll='ls -alFG'
 
@@ -21,6 +22,7 @@ PATH=$PATH:/usr/local/vim/bin/ # vim
 # go
 export GOROOT=/usr/local/go
 export GOPATH=/gopath
+export GOPROXY=https://goproxy.cn
 PATH=$PATH:$GOROOT/bin
 PATH=$PATH:$GOPATH/bin
 
