@@ -81,6 +81,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装
 Plug 'fannheyward/coc-sql', {'do': 'yarn install'}                " sql
 Plug 'neoclide/coc-yaml', {'do': 'yarn install'}                  " yml
 "Plug 'neoclide/coc-java', {'do': 'yarn install'}                 " java 补全
+Plug 'clangd/coc-clangd', {'do': 'yarn install'}                  " c/c++ 依赖clangd
 Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python need   pip install jedi
 Plug 'tpope/vim-fugitive'                                         " git
 Plug 'dyng/ctrlsf.vim'                                            " 全局字符搜索
