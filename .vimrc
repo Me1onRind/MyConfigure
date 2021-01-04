@@ -123,7 +123,7 @@ nmap gst :GoAlternate<CR>
 "nmap <F2> :NERDTreeToggle<CR>
 nmap <F2> :NERDTreeMirror<CR>
 nmap <F2> :NERDTreeToggle<CR>
-nmap nf :NERDTreeFind<CR>
+nmap fn :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$']
 "autocmd BufWinEnter * silent NERDTreeMirror
 
