@@ -121,6 +121,7 @@ nmap gst :GoAlternate<CR>
 
 " nerdtree
 nmap <F2> :NERDTreeToggle<CR>
+nmap nf :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$']
 autocmd BufWinEnter * silent NERDTreeMirror
 
@@ -136,6 +137,7 @@ nmap gb :Git blame<CR>
 
 "注释插件
 let mapleader = ","
+" 选中 <leader>c<space>
 " count,cc 光标以下count行添加注释
 " count,cu 光标以下count行取消注释
 " count,c空格 注释/反注释
@@ -197,11 +199,6 @@ let g:ctrlsf_auto_focus = {
     \ }
 let g:ctrlsf_search_mode = 'async'
 
-" 模板文件
-autocmd BufNewFile *Mapper.xml 0r ~/myConfigure/vim-template/mapper.xml
-autocmd BufNewFile *Mapper.java 0r ~/myConfigure/vim-template/mapper.java
-autocmd BufNewFile *Controller.java 0r ~/myConfigure/vim-template/controller.java
-autocmd BufNewFile *.go 0r ~/myConfigure/vim-template/template.go
 autocmd FileType python setlocal shiftwidth=0 tabstop=4 noexpandtab
 
 let g:floaterm_keymap_toggle = '<F10>'
