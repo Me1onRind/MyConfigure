@@ -120,10 +120,12 @@ nmap gnm :GoRename
 nmap gst :GoAlternate<CR>
 
 " nerdtree
+"nmap <F2> :NERDTreeToggle<CR>
+nmap <F2> :NERDTreeMirror<CR>
 nmap <F2> :NERDTreeToggle<CR>
 nmap nf :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$']
-autocmd BufWinEnter * silent NERDTreeMirror
+"autocmd BufWinEnter * silent NERDTreeMirror
 
 " tagbar  修改~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim
 nmap <F3> :TagbarToggle<CR>
