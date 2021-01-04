@@ -82,7 +82,6 @@ Plug 'fannheyward/coc-sql', {'do': 'yarn install'}                " sql
 Plug 'neoclide/coc-yaml', {'do': 'yarn install'}                  " yml
 "Plug 'neoclide/coc-java', {'do': 'yarn install'}                 " java 补全
 Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python need   pip install jedi
-Plug 'weirongxu/coc-explorer', {'do': 'yarn install'}             " 目录树
 Plug 'tpope/vim-fugitive'                                         " git
 Plug 'dyng/ctrlsf.vim'                                            " 全局字符搜索
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                 " 文件搜索
@@ -101,7 +100,7 @@ let g:go_metalinter_autosave=0
 "let g:go_mod_fmt_autosave = 0
 "let g:go_fmt_autosave = 0
 "let g:go_fmt_autoclose = 0
-let g:go_imports_autosave = 0
+let g:go_imports_autosave = 1
 let g:go_get_update = 0
 let g:go_template_autocreate = 0
 let g:go_highlight_function_arguments = 1
