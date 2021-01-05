@@ -57,7 +57,7 @@ set pastetoggle=<F1>
 set updatetime=200
 nmap <silent> <C-L> :MarkClear<CR>:noh<CR>
 nmap <silent> gr gT
-nmap <silent> qq :pclose<CR>
+"nmap <silent> qq :pclose<CR>
 "imap <F1> <C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR>
 "nmap <F1> i<C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR><Esc>
 " 上/下 移行
