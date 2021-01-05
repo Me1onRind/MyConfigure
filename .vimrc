@@ -64,7 +64,7 @@ nmap <silent> qq :pclose<CR>
 nmap el  :<c-u>execute 'move -1-'. v:count1<cr>
 nmap dl  :<c-u>execute 'move +'. v:count1<cr>
 " 分屏
-nmap fp <c-w>v
+nmap zfp <c-w>v
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'                                        " 目录树
@@ -124,7 +124,7 @@ nmap gst :GoAlternate<CR>
 "nmap <F2> :NERDTreeToggle<CR>
 nmap <F2> :NERDTreeMirror<CR>
 nmap <F2> :NERDTreeToggle<CR>
-nmap fn :NERDTreeFind<CR>
+nmap znf :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$']
 "autocmd BufWinEnter * silent NERDTreeMirror
 
