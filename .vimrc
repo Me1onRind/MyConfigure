@@ -61,8 +61,8 @@ nmap <silent> qq :pclose<CR>
 "imap <F1> <C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR>
 "nmap <F1> i<C-R>=strftime("%Y-%m-%d %H:%I:%M")<CR><Esc>
 " 上/下 移行
-nmap el  :<c-u>execute 'move -1-'. v:count1<cr>
-nmap dl  :<c-u>execute 'move +'. v:count1<cr>
+nmap zul  :<c-u>execute 'move -1-'. v:count1<cr>
+nmap zdl  :<c-u>execute 'move +'. v:count1<cr>
 " 分屏
 nmap zfp <c-w>v
 
