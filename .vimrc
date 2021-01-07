@@ -134,7 +134,7 @@ nmap gii :call InsertGomoduleImportItem()<CR>
 nmap <F2> :NERDTreeToggle<CR>
 nmap znf :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$']
-autocmd BufWinEnter * silent NERDTreeMirror
+autocmd BufWinEnter * if expand('%') != "" | silent NERDTreeMirror | endif
 
 " tagbar  修改~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim
 nmap <F3> :TagbarToggle<CR>
