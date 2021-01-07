@@ -78,14 +78,14 @@ Plug 'Yggdroot/vim-mark'                                          " <leader>m �
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
-Plug 'fannheyward/coc-sql', {'do': 'yarn install'}                " sql
 Plug 'neoclide/coc-yaml', {'do': 'yarn install'}                  " yml
-"Plug 'neoclide/coc-java', {'do': 'yarn install'}                 " java 补全
 Plug 'clangd/coc-clangd', {'do': 'yarn install'}                  " c/c++ 依赖clangd
 Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python need   pip install jedi
+Plug 'iamcco/coc-vimlsp', {'do': 'yarn install'}                  " vim lasp
 Plug 'tpope/vim-fugitive'                                         " git
 Plug 'dyng/ctrlsf.vim'                                            " 全局字符搜索
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }                 " 文件搜索
+Plug 'Yggdroot/LeaderF', {'do': './install.sh' }                  " 文件搜索
+Plug 'Me1onRind/gomodule-info'                                    " go module name
 call plug#end()
 
 
@@ -101,7 +101,7 @@ let g:go_metalinter_autosave=0
 "let g:go_mod_fmt_autosave = 0
 "let g:go_fmt_autosave = 0
 "let g:go_fmt_autoclose = 0
-let g:go_imports_autosave = 1
+let g:go_imports_autosave = 0
 let g:go_get_update = 0
 let g:go_template_autocreate = 0
 let g:go_highlight_function_arguments = 1
@@ -119,14 +119,22 @@ nmap gfs :GoFillStruct<CR>
 nmap gnm :GoRename
 " go switch to _test.go
 nmap gst :GoAlternate<CR>
+nmap gim :GoImports<CR>
+
+function InsertGomoduleImportItem()
+    let str = "\t\"" . GoModuleName() ."/\""
+    call append(line('.'), l:str)
+    normal j$
+    startinsert
+endfunction
+
+nmap gii :call InsertGomoduleImportItem()<CR>
 
 " nerdtree
-"nmap <F2> :NERDTreeToggle<CR>
-nmap <F2> :NERDTreeMirror<CR>
 nmap <F2> :NERDTreeToggle<CR>
 nmap znf :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$']
-"autocmd BufWinEnter * silent NERDTreeMirror
+autocmd BufWinEnter * silent NERDTreeMirror
 
 " tagbar  修改~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim
 nmap <F3> :TagbarToggle<CR>
@@ -209,7 +217,6 @@ let g:floaterm_type = 'normal'
 
 " author注释
 nmap <F4> ms:call AddAuthor()<cr>'S
-imap <F1> "git.garena.com/shopee/bg-logistics/logistics/logistics-line-site-system"
 function AddAuthor()
     let n=1
     while n < 11
