@@ -1,3 +1,4 @@
+set  termencoding=utf-8
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=ucs-bom,utf-8,latin1
 endif
@@ -42,6 +43,10 @@ if &term=="xterm"
      set t_Sb=[4%dm
      set t_Sf=[3%dm
 endif
+
+" Fixed SecureCRT wrong character m2m
+let &t_TI=''
+let &t_TE=''
 
 " 以下为个人设置
 set expandtab "tab转化为空格
@@ -110,7 +115,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_chan_whitespace_error = 1
-let g:go_echo_go_info = 0
+"let g:go_echo_go_info = 0
 "let g:go_def_mode='gopls'
 
 " 自动填充struct
@@ -135,6 +140,8 @@ nmap <F2> :NERDTreeToggle<CR>
 nmap znf :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$']
 autocmd BufWinEnter * if expand('%') != "" | silent NERDTreeMirror | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
 
 " tagbar  修改~/.vim/bundle/tagbar/autoload/tagbar/types/ctags.vim
 nmap <F3> :TagbarToggle<CR>
