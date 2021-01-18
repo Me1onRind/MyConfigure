@@ -83,7 +83,6 @@ Plug 'Yggdroot/vim-mark'                                          " <leader>m �
 Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用该主题
 Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
-Plug 'neoclide/coc-yaml', {'do': 'yarn install'}                  " yml
 Plug 'clangd/coc-clangd', {'do': 'yarn install'}                  " c/c++ 依赖clangd
 Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python need   pip install jedi
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install'}                  " vim lasp
@@ -136,10 +135,21 @@ endfunction
 nmap gii :call InsertGomoduleImportItem()<CR>
 
 " nerdtree
-nmap <F2> :NERDTreeToggle<CR>
+function! MyNerdTreeToggle()
+    if g:NERDTree.ExistsForTab() || g:NERDTree.IsOpen()
+        NERDTreeToggle
+    else
+        silent NERDTreeMirror
+        if !g:NERDTree.ExistsForTab()
+            NERDTreeToggle
+        endif
+    endif
+endfunction
+
+nmap <F2> :call MyNerdTreeToggle()<CR>
 nmap znf :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$']
-autocmd BufWinEnter * if expand('%') != "" | silent NERDTreeMirror | endif
+"autocmd BufWinEnter * if expand('%') != "" | silent NERDTreeMirror | endif
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
