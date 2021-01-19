@@ -149,7 +149,6 @@ endfunction
 nmap <F2> :call MyNerdTreeToggle()<CR>
 nmap znf :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$']
-"autocmd BufWinEnter * if expand('%') != "" | silent NERDTreeMirror | endif
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
