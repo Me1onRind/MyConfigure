@@ -84,7 +84,8 @@ Plug 'KeitaNakamura/neodark.vim'                                  " mac上使用
 Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
 Plug 'clangd/coc-clangd', {'do': 'yarn install'}                  " c/c++ 依赖clangd
-Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python need   pip install jedi
+Plug 'iamcco/coc-diagnostic', {'do': 'yarn install'}
+Plug 'pappasam/coc-jedi', {'do': 'yarn install'}                  " python need pip install jedi/pylint
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install'}                  " vim lasp
 Plug 'tpope/vim-fugitive'                                         " git
 Plug 'dyng/ctrlsf.vim'                                            " 全局字符搜索
@@ -123,7 +124,7 @@ nmap gfs :GoFillStruct<CR>
 nmap gnm :GoRename
 " go switch to _test.go
 nmap gst :GoAlternate<CR>
-nmap gim :GoImports<CR>
+autocmd FileType go nmap gim :GoImports<CR>
 
 function InsertGomoduleImportItem()
     let str = "\t\"" . GoModuleName() ."/\""
@@ -227,6 +228,7 @@ let g:ctrlsf_auto_focus = {
 let g:ctrlsf_search_mode = 'async'
 
 autocmd FileType python setlocal shiftwidth=0 tabstop=4 noexpandtab
+autocmd FileType python nmap gim :CocCommand pyright.organizeimports<CR>
 
 let g:floaterm_keymap_toggle = '<F10>'
 let g:floaterm_type = 'normal'
