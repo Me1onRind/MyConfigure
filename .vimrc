@@ -124,6 +124,10 @@ nmap gfs :GoFillStruct<CR>
 nmap gnm :GoRename
 " go switch to _test.go
 nmap gst :GoAlternate<CR>
+" 查看实现接口的struct
+"nmap gip :GoImplements<CR>
+" 查看实现的接口
+nmap gds :GoDefStack<CR>
 autocmd FileType go nmap gim :GoImports<CR>
 
 function InsertGomoduleImportItem()
@@ -189,9 +193,9 @@ nmap <silent> sn <Plug>(coc-diagnostic-next)
 nmap <silent> sm <Plug>(coc-diagnostic-prev)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gc <Plug>(coc-references)
+nmap <silent> gip <Plug>(coc-implementation)
+nmap <silent> gc <Plug>(coc-references-used)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent> gi :CocAction java.action.organizeImports<CR>
 
 " 检查上前一个位置是否为空格
 function! s:check_back_space() abort

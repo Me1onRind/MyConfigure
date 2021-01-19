@@ -3,7 +3,7 @@ LANG="en_US.UTF-8"
 alias lg='lazygit' # https://github.com/jesseduffield/lazygit
 alias gr='goreplace'
 alias grep='grep --color'
-alias ll='ls -alFG'
+alias ll='ls -alFG --color'
 
 function git_branch {
     branch="`git branch 2>/dev/null | grep '^\*' | sed -e 's/^\*\ //'`"
