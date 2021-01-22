@@ -13,72 +13,28 @@
         }
     },
 
-    "diagnostic.refreshAfterSave": false,
-
-    "diagnostic-languageserver.filetypes": {
-        "python": "pylint"
-    },
-    "diagnostic-languageserver.linters": {
-        "pylint": {
-            "sourceName": "pylint",
-            "command": "pylint",
-            "args": [
-                "--disable=C",
-                "--disable=E1101",
-                "--disable=E0711",
-                "--disable=E0702",
-                "--disable=E0611",
-                "--disable=E0401",
-                "--disable=W0703",
-                "--disable=W0613",
-                "--disable=W0612",
-                "--disable=W0232",
-                "--disable=W0231",
-                "--disable=R0903",
-                "--disable=R0902",
-                "--disable=R0911",
-                "--disable=R0912",
-                "--disable=R0913",
-                "--disable=R0914",
-                "--disable=R0201",
-                "--disable=W0312",
-                "--disable=W0511",
-                "--output-format",
-                "text",
-                "--score",
-                "no",
-                "--msg-template",
-                "'{line}:{column}:{category}:{msg} ({msg_id}:{symbol})'",
-                "%file"
-            ],
-            "formatPattern": [
-                "^(\\d+?):(\\d+?):([a-z]+?):(.*)$",
-                {
-                    "line": 1,
-                    "column": 2,
-                    "security": 3,
-                    "message": 4
-                }
-            ],
-            "rootPatterns": [".git", "pyproject.toml", "setup.py"],
-            "securities": {
-                "informational": "hint",
-                "refactor": "info",
-                "convention": "info",
-                "warning": "warning",
-                "error": "error",
-                "fatal": "error"
-            },
-            "offsetColumn": 1,
-            "formatLines": 1
-        },
-        "explorer.keyMappings.global": {
-            "<cr>": ["expanded?", "collapse", "expand"]
-        },
-        "explorer.file.hiddenRules": {
-            "extensions": [
-                "pyc"
-            ]
-        }
-    }
+    "python.pythonPath": "python2",
+    "python.linting.pylintArgs": [
+        "--disable=C",
+        "--disable=E1101",
+        "--disable=E0711",
+        "--disable=E0702",
+        "--disable=E0611",
+        "--disable=E0401",
+        "--disable=W0703",
+        "--disable=W0613",
+        "--disable=W0612",
+        "--disable=W0232",
+        "--disable=W0231",
+        "--disable=R0903",
+        "--disable=R0902",
+        "--disable=R0911",
+        "--disable=R0912",
+        "--disable=R0913",
+        "--disable=R0914",
+        "--disable=R0201",
+        "--disable=W0312",
+        "--disable=W0511",
+        "--disable=F0001"
+    ]
 }

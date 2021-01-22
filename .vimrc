@@ -86,14 +86,14 @@ Plug 'airblade/vim-rooter'                                        " 根目录
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                   " 拓展安装在 ~/.config
 Plug 'clangd/coc-clangd', {'do': 'yarn install'}                  " c/c++ 依赖clangd
 Plug 'iamcco/coc-diagnostic', {'do': 'yarn install'}
-Plug 'pappasam/coc-jedi', {'do': 'yarn install'}                  " python need pip install jedi/pylint
+Plug 'neoclide/coc-python', {'do': 'yarn install'}                " python2
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install'}                  " vim lasp
 Plug 'tpope/vim-fugitive'                                         " git
 Plug 'dyng/ctrlsf.vim'                                            " 全局字符搜索
 Plug 'Yggdroot/LeaderF', {'do': './install.sh' }                  " 文件搜索
 Plug 'Me1onRind/gomodule-info'                                    " go module name
+Plug 'wookayin/vim-autoimport'
 call plug#end()
-
 
 colorscheme neodark
 let g:neodark#terminal_transparent = 1
@@ -104,9 +104,6 @@ hi Normal ctermfg=252 ctermbg=none
 ":GoUpdateBinaries
 ":GoInstallBinaries
 let g:go_metalinter_autosave=0
-"let g:go_mod_fmt_autosave = 0
-"let g:go_fmt_autosave = 0
-"let g:go_fmt_autoclose = 0
 let g:go_imports_autosave = 0
 let g:go_get_update = 0
 let g:go_template_autocreate = 0
@@ -232,8 +229,10 @@ let g:ctrlsf_auto_focus = {
     \ }
 let g:ctrlsf_search_mode = 'async'
 
+" py+pymode
 autocmd FileType python setlocal shiftwidth=0 tabstop=4 noexpandtab
-autocmd FileType python nmap gim :CocCommand pyright.organizeimports<CR>
+autocmd FileType python nmap gim :PymodeRopeAutoImport<CR>
+
 
 let g:floaterm_keymap_toggle = '<F10>'
 let g:floaterm_type = 'normal'
